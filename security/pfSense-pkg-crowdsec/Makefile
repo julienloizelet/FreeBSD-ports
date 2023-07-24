@@ -26,7 +26,7 @@ do-extract:
 	${MKDIR} ${WRKSRC}
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/pkg
+	${MKDIR} ${STAGEDIR}${PREFIX}/pkg/crowdsec-composer/vendor
 	${MKDIR} ${STAGEDIR}${PREFIX}/www/shortcuts
 	${MKDIR} ${STAGEDIR}/etc/inc/priv
 	${MKDIR} ${STAGEDIR}${DATADIR}
@@ -46,6 +46,7 @@ do-install:
 		${STAGEDIR}${PREFIX}/pkg
 	${INSTALL_DATA} ${FILESDIR}${DATADIR}/info.xml \
 		${STAGEDIR}${DATADIR}
+	cd ${FILESDIR}${PREFIX}/pkg/crowdsec-composer/vendor && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/pkg/crowdsec-composer/vendor
 
 	${INSTALL_DATA} -m 0744 ${FILESDIR}${PREFIX}/etc/rc.conf.d/* \
 		${STAGEDIR}${PREFIX}/etc/rc.conf.d/
